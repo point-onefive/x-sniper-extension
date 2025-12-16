@@ -5,25 +5,8 @@ A Chrome extension that helps you engage with fresh, high-visibility tweets on X
 ![Status](https://img.shields.io/badge/status-beta-yellow)
 ![Platform](https://img.shields.io/badge/platform-Chrome-blue)
 
-## Screenshots
-
 <p align="center">
-  <img src="screenshots/what-is-x-sniper.png" width="300" alt="What is X Sniper">
-  <img src="screenshots/while-running.png" width="300" alt="Running Session">
-</p>
-
-<p align="center">
-  <img src="screenshots/settings.png" width="300" alt="Settings">
-  <img src="screenshots/reply-bank.png" width="300" alt="Reply Bank">
-</p>
-
-<p align="center">
-  <img src="screenshots/session-complete-summary.png" width="300" alt="Session Complete">
-  <img src="screenshots/session-stopped-summary.png" width="300" alt="Session Stopped">
-</p>
-
-<p align="center">
-  <img src="screenshots/best-practices.png" width="300" alt="Best Practices">
+  <img src="screenshots/what-is-x-sniper.png" width="350" alt="What is X Sniper">
 </p>
 
 ## ⚠️ Disclaimer
@@ -68,6 +51,35 @@ This tool is for **educational purposes only**. Automated engagement may violate
 6. Click **Save Settings**
 7. Click **Start** to begin
 
+<p align="center">
+  <img src="screenshots/settings.png" width="350" alt="Settings">
+</p>
+
+## Reply Bank
+
+Load your custom replies - one per line. The extension will randomly select from these when engaging with tweets.
+
+<p align="center">
+  <img src="screenshots/reply-bank.png" width="350" alt="Reply Bank">
+</p>
+
+## While Running
+
+Once started, the extension shows live status, logs, and a countdown timer between actions.
+
+<p align="center">
+  <img src="screenshots/while-running.png" width="350" alt="Running Session">
+</p>
+
+## Session Summaries
+
+Get a summary of your session when it completes or when you manually stop.
+
+<p align="center">
+  <img src="screenshots/session-complete-summary.png" width="350" alt="Session Complete">
+  <img src="screenshots/session-stopped-summary.png" width="350" alt="Session Stopped">
+</p>
+
 ## Best Practices
 
 ⚠️ **Read these carefully to protect your account:**
@@ -79,6 +91,10 @@ This tool is for **educational purposes only**. Automated engagement may violate
 - **Take breaks** - Mix in manual activity between automated sessions
 - **Watch for warnings** - Stop immediately if X shows errors
 - **One device** - Don't use X elsewhere while running
+
+<p align="center">
+  <img src="screenshots/best-practices.png" width="350" alt="Best Practices">
+</p>
 
 ## Settings Guide
 
@@ -139,5 +155,7 @@ Pull requests welcome! Please test thoroughly before submitting.
 MIT License - See LICENSE file for details.
 
 ---
+
+**Remember:** Use responsibly. Your account, your responsibility.---
 
 **Remember:** Use responsibly. Your account, your responsibility.
