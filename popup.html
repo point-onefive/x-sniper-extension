@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>X Sniper</title>
+</head>
+<body>
+  <div class="container">
+    <h1><img src="icons/icon48.png" alt="X Sniper" class="title-logo"> X Sniper</h1>
+    
+    <!-- Controls (Primary Action) -->
+    <div class="controls">
+      <button id="startBtn" class="btn btn-start">▶ Start</button>
+      <button id="stopBtn" class="btn btn-stop" disabled>■ Stop</button>
+    </div>
+    
+    <!-- Status Dashboard -->
+    <div class="status-dashboard">
+      <div class="status-item">
+        <span class="status-label">Status:</span>
+        <span id="status" class="status stopped">STOPPED</span>
+      </div>
+      <div class="status-divider"></div>
+      <div class="status-item">
+        <span class="status-label">Progress:</span>
+        <span id="stats" class="status-value">0 / 10</span>
+      </div>
+    </div>
+    
+    <!-- Countdown Display -->
+    <div id="countdownBar" class="countdown-bar hidden">
+      <span id="countdownLabel">Cooldown</span>
+      <span id="countdownTimer">0s</span>
+      <div class="countdown-progress">
+        <div id="countdownFill" class="countdown-fill"></div>
+      </div>
+    </div>
+    
+    <!-- Running notice -->
+    <div id="runningNotice" class="running-notice hidden">
+      <span class="notice-icon">⚠️</span>
+      <span class="notice-text"><strong>Don't interact with the X tab</strong> while running. You can browse other tabs freely!<br><em style="font-size: 11px; opacity: 0.85;">Tip: Avoid using X on other devices while the bot runs to reduce detection risk.</em></span>
+    </div>
+    
+    <!-- Toast notification -->
+    <div id="toast" class="toast hidden"></div>
+    
+    <!-- Live Log -->
+    <div class="section">
+      <div class="log-header">
+        <h2>📋 Activity Log</h2>
+        <div class="log-buttons">
+          <button id="clearLogsBtn" class="btn-icon btn-clear" title="Clear logs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14"/>
+            </svg>
+          </button>
+          <button id="copyLogsBtn" class="btn-icon btn-copy" title="Copy logs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="log" class="log">
+        <div class="log-entry info">Ready to snipe. Configure settings and click Start.</div>
+      </div>
+    </div>
+    
+    <!-- What This Extension Does -->
+    <details class="info-card">
+      <summary>
+        <span class="card-title">🎯 What is X Sniper?</span>
+        <span class="toggle-hint">(click to expand)</span>
+      </summary>
+      <div class="card-content">
+        <p>An automated engagement tool that helps you <strong class="highlight-grow">GROW</strong> your X/Twitter presence by identifying and replying to <strong class="highlight-fresh">FRESH</strong>, high-potential <strong class="highlight-viral">VIRAL</strong> tweets from accounts with large followings.</p>
+        <p class="goal-benefit">💡 Early replies on viral tweets get massive visibility, leading to more profile visits, followers, and engagement on your own content.</p>
+      </div>
+    </details>
+    
+    <!-- Collapsible How It Works -->
+    <details class="info-card">
+      <summary>
+        <span class="card-title">📖 How To Use</span>
+        <span class="toggle-hint">(click to expand)</span>
+      </summary>
+      <div class="card-content">
+        <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div>
+            <strong>Open X.com</strong>
+            <p>Log into your X/Twitter account in this browser. You can be on any page - home, search, profile, etc.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div>
+            <strong>Add Replies</strong>
+            <p>Scroll down to the Reply Bank and add your replies (one per line). Use the ChatGPT prompt generator for ideas!</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div>
+            <strong>Configure Settings</strong>
+            <p>Set your target criteria: minimum followers, tweet age, session limit, etc. Save your settings.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <div>
+            <strong>Click Start</strong>
+            <p>The extension will automatically search for fresh tweets matching your criteria and post replies.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">5</span>
+          <div>
+            <strong>Keep Tab Open</strong>
+            <p>The X tab must stay open (can be in background). Watch the Activity Log to see what's happening!</p>
+          </div>
+        </div>
+      </div>
+      <p class="note">⚠️ <strong>Use responsibly.</strong> Excessive automation may get your account limited by X. Start with conservative settings and adjust based on results.</p>
+      
+      <div class="best-practices">
+        <h4>🛡️ Best Practices</h4>
+        <ul>
+          <li><strong>Start small & supervise:</strong> Begin with low session limits (3-5 replies) and watch the runs closely. Different accounts have different tolerances—Premium accounts may handle more activity than free accounts. Learn your thresholds before scaling up.</li>
+          <li><strong>Stable connection:</strong> Use a reliable internet connection to avoid page load failures.</li>
+          <li><strong>Watch for warnings:</strong> If X shows error pages or "Something went wrong", take a break.</li>
+          <li><strong>Slow pages = stop:</strong> If pages are loading slowly or timing out, stop immediately and wait 15-30 minutes.</li>
+          <li><strong>Start slow:</strong> Use longer cooldowns (30-60s) and conservative session limits at first.</li>
+          <li><strong>One device:</strong> Don't use X on other devices while the bot runs.</li>
+          <li><strong>Mix in human activity:</strong> Periodically pause the bot and do some manual browsing, liking, or posting. This helps your account look more natural.</li>
+          <li><strong>Vary your replies:</strong> Keep diversity in your reply bank - mix up emoji placement, capitalization, sentence structure, and length to avoid looking like a bot.</li>
+        </ul>
+      </div>
+      </div>
+    </details>
+    
+    <button id="saveBtn" class="btn btn-save">💾 Save Settings</button>
+    
+    <!-- Target Settings -->
+    <div class="section">
+      <h2>🎯 Target Settings</h2>
+      
+      <div class="setting">
+        <label>
+          Min Followers
+          <input type="number" id="minFollowers" value="">
+        </label>
+        <p class="desc">Only reply to accounts with at least this many followers</p>
+      </div>
+      
+      <div class="setting">
+        <label>
+          Min Likes (search filter)
+          <input type="number" id="minLikes" value="">
+        </label>
+        <p class="desc">Search for tweets with at least this many likes (helps find viral tweets)</p>
+      </div>
+      
+      <div class="setting">
+        <label>
+          Max Tweet Age (minutes)
+          <input type="number" id="maxAge" value="">
+        </label>
+        <p class="desc">Only reply to tweets posted within this many minutes ago</p>
+      </div>
+      
+      <div class="setting">
+        <label>
+          Session Limit
+          <input type="number" id="sessionLimit" value="">
+        </label>
+        <p class="desc">Stop automatically after this many successful replies</p>
+      </div>
+    </div>
+    
+    <!-- Timing Note (moved here) -->
+    <div class="timing-note">
+      <strong style="color: #ffd000;">💡 Timing:</strong>
+      <span style="color: #8899a6;"> Cooldowns use a random value between min and max to appear more human-like.</span>
+    </div>
+    
+    <!-- Timing Settings -->
+    <div class="section">
+      <h2>⏱️ Timing Settings</h2>
+      
+      <div class="setting">
+        <label>
+          Post Cooldown (seconds)
+          <div class="range-inputs">
+            <input type="number" id="cooldownMin" value="" class="input-small">
+            <span class="range-separator">-</span>
+            <input type="number" id="cooldownMax" value="" class="input-small">
+          </div>
+        </label>
+        <p class="desc">Wait between min and max seconds after each reply</p>
+      </div>
+      
+      <div class="setting">
+        <label>
+          Scan Interval (seconds)
+          <div class="range-inputs">
+            <input type="number" id="scanMin" value="" class="input-small">
+            <span class="range-separator">-</span>
+            <input type="number" id="scanMax" value="" class="input-small">
+          </div>
+        </label>
+        <p class="desc">How often to refresh and scan for new tweets</p>
+      </div>
+    </div>
+    
+    <!-- Reply Bank Tip with ChatGPT Prompt -->
+    <details class="prompt-section">
+      <summary class="prompt-summary">
+        <span style="color: #ffd000;">💡 Need replies?</span>
+        <span style="color: #8899a6;"> Click for ChatGPT prompt template</span>
+      </summary>
+      <div class="prompt-content">
+        <p class="prompt-intro">Copy this prompt and paste it into ChatGPT to generate high-engagement replies:</p>
+        <div class="prompt-box" id="promptBox">You are generating short, high-engagement universal sniper replies for X/Twitter.
+
+=== PURPOSE ===
+Produce scroll-stopping replies that work on ANY tweet using curiosity, surrealism, pattern interruption, micro-facts, and psychological hooks.
+
+=== CATEGORIES (mix randomly) ===
+1) Surreal brain-glitch reactions  
+2) Obscure micro-facts (one short factual statement)  
+3) Psychological one-liners  
+4) Pattern-interrupt minimalism
+
+=== FORMAT RULES ===
+- 2–12 words max
+- 0–2 emojis (45% none, 45% one, 10% two)
+- Emojis ONLY from: 🔥 😱 🤯 💀 😂 👀 💥 ⚡ 🙌 😮 👏 😎
+- Vary emoji placement: start / inline / end
+- Random capitalization patterns
+- No hashtags, no @handles, no links
+- No profanity, politics, adult content, or tweet-specific references
+- No repeated structures or near-duplicate lines
+
+=== OUTPUT FORMAT ===
+- One single code block
+- One reply per line
+- No numbering, no explanations
+
+=== QUANTITY ===
+Generate EXACTLY 50 replies.
+
+Generate now.</div>
+        <button id="copyPromptBtn" class="btn btn-copy">📋 Copy Prompt</button>
+      </div>
+    </details>
+    
+    <!-- Reply Bank -->
+    <div class="section">
+      <h2>💬 Reply Bank</h2>
+      <p class="desc">One reply per line. A random one will be selected for each tweet.</p>
+      <textarea id="replies" rows="8" placeholder="This is so true 🔥
+Couldn't agree more!
+Absolutely spot on 💯
+This right here 👆
+Facts!"></textarea>
+      <div class="reply-stats">
+        <span id="replyCount">0 replies loaded</span>
+      </div>
+      <p class="desc" style="margin-top: 8px; color: #71767b; font-size: 11px;">
+        🔄 <strong>Auto-rotation:</strong> Each reply is used once then removed. The bot will stop after all replies are used or session limit is reached, whichever comes first.
+      </p>
+    </div>
+  </div>
+  
+  <!-- Terms Acceptance Modal (shown on first use) -->
+  <div id="termsModal" class="terms-modal hidden">
+    <div class="terms-content">
+      <h2>⚠️ Important Disclaimer</h2>
+      <div class="terms-text">
+        <p><strong>Please read carefully before using X Sniper:</strong></p>
+        <ul>
+          <li><strong>Use at your own risk.</strong> This tool automates actions on X/Twitter which may violate their Terms of Service.</li>
+          <li><strong>Account risks.</strong> Using automation tools may result in your account being limited, suspended, or permanently banned by X.</li>
+          <li><strong>No guarantees.</strong> We make no guarantees about the safety, effectiveness, or reliability of this tool.</li>
+          <li><strong>No liability.</strong> The developers are not responsible for any consequences including account restrictions, bans, or any other damages.</li>
+          <li><strong>Your responsibility.</strong> You are solely responsible for your use of this tool and any actions taken on your account.</li>
+          <li><strong>No affiliation.</strong> This tool is not affiliated with, endorsed by, or connected to X Corp or Twitter.</li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 11px; color: #8899a6;">By using this extension, you acknowledge that you have read, understood, and agree to these terms. You accept full responsibility for any consequences.</p>
+        <p style="margin-top: 8px; font-size: 11px; color: #1d9bf0;">💡 <strong>Tip:</strong> After accepting, expand the "How To Use" section and read the Best Practices to protect your account.</p>
+      </div>
+      <div class="terms-checkbox">
+        <label>
+          <input type="checkbox" id="termsCheckbox">
+          <span>I understand and accept full responsibility for using this tool</span>
+        </label>
+      </div>
+      <button id="acceptTermsBtn" class="btn btn-start" disabled>Accept & Continue</button>
+    </div>
+  </div>
+  
+  <!-- Footer Disclaimer -->
+  <div class="footer-disclaimer">
+    <p>⚠️ <strong>Disclaimer:</strong> Use at your own risk. Not affiliated with X. <a href="#" id="viewTermsLink">View full terms</a></p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
