@@ -249,8 +249,9 @@ async function runCycle() {
     if (checkedAuthors.has(candidate.author)) {
       log('⏭️ Already checked @' + candidate.author + ' this session, skipping', 'scan');
       
-      // Add to replied list so we skip this tweet
-      const repliedTweets = settings.repliedTweets || [];
+      // Add to replied list so we skip this tweet - fetch fresh data to avoid race conditions
+      const freshData = await chrome.storage.local.get(['repliedTweets']);
+      const repliedTweets = freshData.repliedTweets || [];
       repliedTweets.push(candidate.id);
       if (repliedTweets.length > 200) repliedTweets.shift();
       await chrome.storage.local.set({ repliedTweets });
@@ -327,7 +328,10 @@ async function runCycle() {
     // SUCCESS!
     consecutiveErrors = 0; // Reset error counter on success
     const newCount = sessionCount + 1;
-    const repliedTweets = settings.repliedTweets || [];
+    
+    // IMPORTANT: Fetch fresh repliedTweets to avoid race condition / stale data causing double posts
+    const freshData = await chrome.storage.local.get(['repliedTweets']);
+    const repliedTweets = freshData.repliedTweets || [];
     repliedTweets.push(candidate.id);
     if (repliedTweets.length > 200) repliedTweets.shift();
     
